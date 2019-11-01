@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <credit-input mask="XXXX XXXX XXXX XXXX XX"></credit-input>
+    <credit-card-input mask="#### #### #### #### ##"></credit-card-input>
   </div>
 </template>
 
 <script>
-  import CreditInput from './components/credit-input/credit-input';
+  import CreditCardInput from './components/credit-input/credit-input';
 
   export default {
-    components: {CreditInput},
+    components: {CreditCardInput},
     data() {
       return {}
     }
