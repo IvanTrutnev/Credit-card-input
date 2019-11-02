@@ -11,7 +11,7 @@
 import CardInfo from "../card-info/card-info";
 import { throttle } from "../../helpers";
 
-var lookup = require("binlookup")();
+const lookup = require("binlookup")();
 
 export default {
   components: { CardInfo },
@@ -172,7 +172,7 @@ export default {
           } else {
             newValue += placeholder[i];
           }
-          // break if no characters left and the pattern is non-special character
+
           if (strippedValue[j] === undefined) {
             break;
           }
