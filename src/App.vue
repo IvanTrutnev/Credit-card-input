@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <credit-card-input mask="#### #### #### #### ##"></credit-card-input>
+    <!-- <credit-card-input></credit-card-input> -->
   </div>
 </template>
 

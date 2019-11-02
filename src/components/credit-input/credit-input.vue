@@ -27,17 +27,10 @@ export default {
     };
   },
   methods: {
-    showCreditNumber() {
-      const maskValue = document
-        .getElementById("ccMask")
-        .innerText.replace(/\s/g, "");
-      console.log(Number(maskValue));
-    },
     fetchCardData(value) {
       fetch(`https://lookup.binlist.net/${value.replace(/\s/g, "")}`)
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           this.cardInfo = { ...data };
         })
         .catch(error => {
@@ -46,26 +39,21 @@ export default {
     }
   },
   mounted() {
-    const maskedInput = [this.$refs["mask"]];
+    const maskedInput = this.$refs["mask"];
     const self = this;
     const masking = {
-      maskedInputs: maskedInput,
+      maskedInput: maskedInput,
       maskedNumber: "#Xx",
       maskedLetter: "_",
 
       init: function() {
-        masking.setUpMasks(masking.maskedInputs);
-        masking.maskedInputs = document.querySelectorAll(".masked");
-        masking.activateMasking(masking.maskedInputs);
+        masking.setUpMasks(masking.maskedInput);
+        masking.maskedInput = document.querySelectorAll(".masked");
+        masking.activateMasking(masking.maskedInput);
       },
 
-      setUpMasks: function(inputs) {
-        let i,
-          l = inputs.length;
-
-        for (i = 0; i < l; i++) {
-          masking.createShell(inputs[i]);
-        }
+      setUpMasks: function(input) {
+        masking.createShell(input);
       },
 
       createShell: function(input) {
@@ -96,17 +84,13 @@ export default {
       }, 1500),
 
       activateMasking: function(inputs) {
-        let i, l;
-
-        for (i = 0, l = inputs.length; i < l; i++) {
-          masking.maskedInputs[i].addEventListener(
-            "keyup",
-            function(e) {
-              masking.handleValueChange(e);
-            },
-            false
-          );
-        }
+        inputs[0].addEventListener(
+          "keyup",
+          function(e) {
+            masking.handleValueChange(e);
+          },
+          false
+        );
       },
 
       handleValueChange: function(e) {
@@ -214,15 +198,15 @@ export default {
 
 <style scoped lang="scss">
 .masked {
-  font-family: "Courier New", monospace;
-  font-size: 1.6em;
-  padding: 0.3em 0.5em;
-  outline: none;
   border-style: solid;
   border-width: 0 0 1px 0;
   border-color: #eee;
   border-radius: 0;
   background: #fff;
+  font-family: "Courier New", monospace;
+  font-size: 1.6em;
+  padding: 0.3em 0.5em;
+  outline: none;
   transition: border-color 0.2s;
   margin-left: auto;
   margin-right: auto;

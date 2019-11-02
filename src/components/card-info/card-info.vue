@@ -38,9 +38,6 @@ export default {
         country: {}
       })
     }
-  },
-  mounted() {
-    console.log(this.data);
   }
 };
 </script>
