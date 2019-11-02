@@ -184,7 +184,7 @@ export default {
 .masked {
   border-style: solid;
   border-width: 0 0 1px 0;
-  border-color: #eee;
+  border-color: #6a6262;
   border-radius: 0;
   background: #fff;
   font-family: "Courier New", monospace;
