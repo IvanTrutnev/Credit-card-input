@@ -47,6 +47,7 @@ export default {
 
       input.setAttribute("maxlength", placeholder.length);
       input.setAttribute("data-placeholder", placeholder);
+      input.removeAttribute("placeholder");
 
       text =
         '<span class="shell">' +
@@ -159,6 +160,7 @@ export default {
     },
     errorOnKeyEntry() {
       console.log("some error");
+       this.cardInfo = {};
     },
     init() {
       const maskedInput = this.$refs["mask"];
