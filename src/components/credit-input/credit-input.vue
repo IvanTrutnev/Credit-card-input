@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input class="masked" data-type="masked" :data-id="uniqkey" :placeholder="this.mask" ref="mask" />
+    <input class="masked" data-type="masked" data-id="cc" :placeholder="this.mask" ref="mask" />
     <div>
       <card-info :data="cardInfo" class="card-info"></card-info>
     </div>
@@ -17,10 +17,6 @@ export default {
     mask: {
       type: String,
       default: "#### #### #### ####"
-    },
-    uniqkey: {
-      type: [String, Number],
-      default: 0
     }
   },
   data() {
@@ -90,7 +86,7 @@ export default {
         case 9: // tab (let blur handle tab)
           return;
       }
-      console.log(id);
+
       document.querySelectorAll('[data-id]')[0].value = this.handleCurrentValue(e);
       document.getElementById(`${id}Mask`).innerHTML = this.setValueOfMask(e);
     },
