@@ -15,4 +15,5 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Mask param is #### #### #### #### by default.
+Trottle time is setted 1500ms by default.
