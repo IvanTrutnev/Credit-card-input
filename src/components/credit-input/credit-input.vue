@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input class="masked" data-type="masked" :placeholder="this.mask" id="cc" ref="mask" />
+    <input class="masked" data-type="masked" data-id="mask" :placeholder="this.mask" ref="mask" />
     <div>
       <card-info :data="cardInfo" class="card-info"></card-info>
     </div>
@@ -52,7 +52,7 @@ export default {
       text =
         '<span class="shell">' +
         '<span aria-hidden="true" style="display: none" id="' +
-        input.id +
+        input.dataset.id +
         'Mask"><i></i>' +
         placeholder +
         "</span>" +
@@ -73,7 +73,7 @@ export default {
       });
     },
     handleValueChange(e) {
-      const id = e.target.getAttribute("id");
+      const id = e.target.getAttribute("data-id");
 
       switch (e.keyCode) {
         case 20: // CapsLock
@@ -88,7 +88,7 @@ export default {
           return;
       }
 
-      document.getElementById(id).value = this.handleCurrentValue(e);
+      document.querySelectorAll('[data-id]')[0].value = this.handleCurrentValue(e);
       document.getElementById(`${id}Mask`).innerHTML = this.setValueOfMask(e);
     },
     handleCurrentValue(e) {
@@ -98,8 +98,6 @@ export default {
         value = e.target.value,
         l = placeholder.length,
         newValue = "",
-        i,
-        j,
         isInt,
         isLetter,
         strippedValue;
@@ -108,7 +106,7 @@ export default {
         ? value.replace(/\W/g, "")
         : value.replace(/\D/g, "");
 
-      for (i = 0, j = 0; i < l; i++) {
+      for (let i = 0, j = 0; i < l; i++) {
         let x;
         let isInt = !isNaN(parseInt(strippedValue[j]));
         let isLetter = strippedValue[j]
