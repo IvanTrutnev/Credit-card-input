@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input class="masked" data-type="masked" data-id="mask" :placeholder="this.mask" ref="mask" />
+    <input class="masked" data-type="masked" :data-id="uniqkey" :placeholder="this.mask" ref="mask" />
     <div>
       <card-info :data="cardInfo" class="card-info"></card-info>
     </div>
@@ -17,6 +17,10 @@ export default {
     mask: {
       type: String,
       default: "#### #### #### ####"
+    },
+    uniqkey: {
+      type: [String, Number],
+      default: 0
     }
   },
   data() {
@@ -38,7 +42,7 @@ export default {
           this.cardInfo = {};
         });
     },
-    setUpMasks(input) {
+    setUpMask(input) {
       this.createShell(input);
     },
     createShell(input) {
@@ -47,7 +51,6 @@ export default {
 
       input.setAttribute("maxlength", placeholder.length);
       input.setAttribute("data-placeholder", placeholder);
-      input.removeAttribute("placeholder");
 
       text =
         '<span class="shell">' +
@@ -87,7 +90,7 @@ export default {
         case 9: // tab (let blur handle tab)
           return;
       }
-
+      console.log(id);
       document.querySelectorAll('[data-id]')[0].value = this.handleCurrentValue(e);
       document.getElementById(`${id}Mask`).innerHTML = this.setValueOfMask(e);
     },
@@ -166,7 +169,7 @@ export default {
       const masking = {
         maskedInput
       };
-      this.setUpMasks(maskedInput);
+      this.setUpMask(maskedInput);
       masking.maskedInput = document.querySelectorAll("[data-type='masked']");
       this.activateMasking(masking.maskedInput);
     }

@@ -8,9 +8,6 @@
   import CreditCardInput from './components/credit-input/credit-input';
 
   export default {
-    components: {CreditCardInput},
-    data() {
-      return {}
-    }
+    components: {CreditCardInput}
   }
 </script>
